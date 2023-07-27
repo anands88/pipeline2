@@ -1,2 +1,3 @@
-FROM  httpd
-COPY index.html /usr/local/apache2/htdocs/
+FROM  python
+RUN mkdir /pythons
+COPY hello.py /pythons/
