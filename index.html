@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DX Ball</title>
+    <style>
+        #game-board {
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            position: relative;
+        }
+        
+        #ball {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        #paddle {
+            width: 80px;
+            height: 10px;
+            background-color: blue;
+            position: absolute;
+            bottom: 0;
+            left: 160px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-board">
+        <div id="ball"></div>
+        <div id="paddle"></div>
+    </div>
+
+    <script>
+        const ball = document.getElementById('ball');
+        const paddle = document.getElementById('paddle');
+        const gameBoard = document.getElementById('game-board');
+
+        let x = 0;
+        let y = 0;
+        let dx = 2;
+        let dy = 2;
+
+        function updateBallPosition() {
+            x += dx;
+            y += dy;
+
+            if (x <= 0 || x + ball.offsetWidth >= gameBoard.offsetWidth) {
+                dx *= -1;
+            }
+
+            if (y <= 0 || y + ball.offsetHeight >= gameBoard.offsetHeight) {
+                dy *= -1;
+            }
+
+            ball.style.left = x + 'px';
+            ball.style.top = y + 'px';
+
+            requestAnimationFrame(updateBallPosition);
+        }
+
+        updateBallPosition();
+    </script>
+</body>
+</html>
